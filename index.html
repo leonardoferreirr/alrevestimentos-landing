@@ -58,7 +58,8 @@ section[id]{scroll-margin-top:86px}
 .nav{position:fixed;inset:0 0 auto 0;z-index:60;transition:background .5s var(--ease),box-shadow .5s var(--ease)}
 .nav__in{display:flex;align-items:center;justify-content:space-between;height:82px}
 .nav__brand{display:inline-flex;align-items:center;gap:.7rem;line-height:1}
-.nav__mark{height:34px;width:auto;display:block}
+.nav__logo{height:52px;width:auto;display:block}
+@media(max-width:860px){.nav__logo{height:44px}}
 .nav__name{font-family:var(--body);font-weight:600;font-size:.92rem;letter-spacing:.16em;text-transform:uppercase;color:#fff;transition:color .4s;white-space:nowrap}
 .nav__name b{font-weight:700}
 .nav__name i{font-style:normal;font-weight:500;color:var(--gold-bright);transition:color .4s}
@@ -210,7 +211,7 @@ html.js .rv.in{opacity:1;transform:none}
 .footer__top{display:grid;grid-template-columns:1fr;gap:clamp(2rem,5vw,3.5rem);padding-bottom:2.6rem;border-bottom:1px solid rgba(220,187,132,.16)}
 @media(min-width:820px){.footer__top{grid-template-columns:1.3fr 1fr 1fr}}
 .footer__brand{display:flex;align-items:center;gap:.7rem;margin-bottom:1.1rem}
-.footer__mark{height:38px;width:auto}
+.footer__logo{height:88px;width:auto;display:block}
 .footer__name{font-family:var(--body);font-weight:600;color:#fff;font-size:1rem;letter-spacing:.16em;text-transform:uppercase}
 .footer__name i{font-style:normal;font-weight:500;color:var(--gold-bright)}
 .footer__tag{max-width:34ch;font-size:.96rem;line-height:1.7;color:var(--on-black-2)}
@@ -245,9 +246,8 @@ body.lock{overflow:hidden}
 <!-- NAV -->
 <header class="nav" id="nav">
   <div class="container nav__in">
-    <a class="nav__brand" href="#topo" aria-label="AL Revestimentos">
-      <img class="nav__mark" src="assets/img/al-mark.png" alt="AL Revestimentos" width="56" height="35">
-      <span class="nav__name"><b>AL</b> <i>Revestimentos</i></span>
+    <a class="nav__brand" href="#topo" aria-label="AL Revestimentos Exclusivos">
+      <img class="nav__logo" src="assets/img/al-logo.webp" alt="AL Revestimentos Exclusivos" width="59" height="52">
     </a>
     <nav>
       <ul class="nav__links">
@@ -317,7 +317,7 @@ body.lock{overflow:hidden}
       <h2>A verdadeira sofisticação está na <span class="em">autenticidade</span> dos materiais.</h2>
     </div>
     <div class="marca__body rv rv-d1">
-      <p>Na AL Revestimentos, cada pedra natural é escolhida a dedo para projetos de alto padrão. Mais do que um revestimento, ela se torna parte da arquitetura, criando ambientes elegantes, acolhedores e atemporais.</p>
+      <p>Na AL Revestimentos Exclusivos, cada pedra natural é escolhida a dedo para projetos de alto padrão. Mais do que um revestimento, ela se torna parte da arquitetura, criando ambientes elegantes, acolhedores e atemporais.</p>
       <p>Selecionamos as referências mais atuais e exclusivas do mercado, pedras que unem design, qualidade e personalidade. Porque escolher uma pedra natural é investir em um material único, criado pela natureza e valorizado pelo tempo.</p>
     </div>
   </div>
@@ -478,8 +478,7 @@ body.lock{overflow:hidden}
     <div class="footer__top">
       <div>
         <div class="footer__brand">
-          <img class="footer__mark" src="assets/img/al-mark.png" alt="AL Revestimentos" width="61" height="38">
-          <span class="footer__name">AL <i>Revestimentos</i></span>
+          <img class="footer__logo" src="assets/img/al-logo.webp" alt="AL Revestimentos Exclusivos" width="100" height="88">
         </div>
         <p class="footer__tag">Pedras naturais selecionadas para projetos que valorizam a arquitetura.</p>
       </div>
@@ -517,7 +516,7 @@ body.lock{overflow:hidden}
 (function(){
   /* ==== WhatsApp central (Leonardo: preencher número [A CONFIRMAR]) ==== */
   var WHATS='55XXXXXXXXXXX'; // [A CONFIRMAR] DDI+DDD+número, ex 5547999998888
-  var MSG=encodeURIComponent('Olá! Vim pelo site da AL Revestimentos e quero conversar sobre pedras naturais para o meu projeto.');
+  var MSG=encodeURIComponent('Olá! Vim pelo site da AL Revestimentos Exclusivos e quero conversar sobre pedras naturais para o meu projeto.');
   function waLink(){ return 'obrigado.html?to=wa&n='+WHATS+'&t='+MSG; }
   document.querySelectorAll('[data-wa]').forEach(function(a){
     // se o alvo é a seção de contato na própria página, mantém âncora; senão WhatsApp
@@ -568,11 +567,13 @@ body.lock{overflow:hidden}
   },{threshold:.14,rootMargin:'0px 0px -8% 0px'});
   document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
 
-  /* ==== Ambientes: marquee scroll infinito (duplica a fita pra loop sem emenda) ==== */
+  /* ==== Init pesado (clonagem do carrossel + duplicação do marquee) fora do caminho crítico: mantém o TBT baixo ==== */
+  function initHeavy(){
+  /* Ambientes: marquee scroll infinito (duplica a fita pra loop sem emenda) */
   var mt=document.getElementById('ambTrack');
   if(mt){ mt.innerHTML += mt.innerHTML; }
 
-  /* ==== As pedras: catálogo Netflix, avança só ao clicar, loop infinito ==== */
+  /* As pedras: catálogo Netflix, avança só ao clicar, loop infinito */
   (function(){
     var track=document.getElementById('pcarTrack');
     if(!track) return;
@@ -609,6 +610,9 @@ body.lock{overflow:hidden}
     var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(measure,150); },{passive:true});
     measure();
   })();
+  }
+  if('requestIdleCallback' in window){ requestIdleCallback(initHeavy,{timeout:1500}); }
+  else { setTimeout(initHeavy, 200); }
 })();
 </script>
 </body>
