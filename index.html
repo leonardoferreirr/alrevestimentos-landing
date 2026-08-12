@@ -270,22 +270,8 @@ body.lock{overflow:hidden}
   <div class="hero__wrap">
     <div class="container">
       <div class="hero__rule"></div>
-      <div class="hero__leads" id="leads">
-        <div class="hero__lead is-active">
-          <h1 class="hero__title">A pedra que vira <span class="em">protagonista</span> do ambiente.</h1>
-        </div>
-        <div class="hero__lead">
-          <h1 class="hero__title">Textura natural que <span class="em">atravessa</span> tendências.</h1>
-        </div>
-        <div class="hero__lead">
-          <h1 class="hero__title">Da fachada ao piso, a natureza como <span class="em">acabamento</span>.</h1>
-        </div>
-        <div class="hero__lead">
-          <h1 class="hero__title">Sofisticação que só o <span class="em">tempo</span> sabe criar.</h1>
-        </div>
-        <div class="hero__lead">
-          <h1 class="hero__title">Cada pedra é <span class="em">única</span>. Cada projeto, incomparável.</h1>
-        </div>
+      <div class="hero__leads">
+        <h1 class="hero__title">A pedra que vira <span class="em">protagonista</span> do ambiente.</h1>
         <p class="hero__sub">Pedras naturais selecionadas para projetos de alto padrão que valorizam a arquitetura.</p>
         <div class="hero__actions">
           <a class="btn btn--wa" data-wa href="#contato">
@@ -548,13 +534,12 @@ body.lock{overflow:hidden}
 
   /* ==== Hero: slides + leads sincronizados ==== */
   var slides=[].slice.call(document.querySelectorAll('.hero__slide'));
-  var leads=[].slice.call(document.querySelectorAll('.hero__lead'));
   var dots=[].slice.call(document.querySelectorAll('#dots li'));
   var i=0,n=slides.length,timer;
   function go(k){
-    slides[i].classList.remove('is-active'); leads[i].classList.remove('is-active'); dots[i].classList.remove('is-active');
+    slides[i].classList.remove('is-active'); dots[i].classList.remove('is-active');
     i=(k+n)%n;
-    slides[i].classList.add('is-active'); leads[i].classList.add('is-active'); dots[i].classList.add('is-active');
+    slides[i].classList.add('is-active'); dots[i].classList.add('is-active');
   }
   function play(){ clearInterval(timer); timer=setInterval(function(){ go(i+1); },6000); }
   dots.forEach(function(li,k){ li.querySelector('button').addEventListener('click',function(){ go(k); play(); }); });
