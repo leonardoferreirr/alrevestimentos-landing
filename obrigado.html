@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Redirecionando · AL Revestimentos</title>
+<link rel="icon" href="assets/img/favicon-256.png" type="image/png">
+<style>
+@font-face{font-family:'Fraunces';font-weight:300 560;font-display:swap;src:url('assets/fonts/fraunces-latin.woff2') format('woff2')}
+@font-face{font-family:'Manrope';font-weight:300 700;font-display:swap;src:url('assets/fonts/manrope-latin.woff2') format('woff2')}
+*{margin:0;box-sizing:border-box}
+body{font-family:'Manrope',system-ui,sans-serif;background:#100f0d;color:#efe9dd;min-height:100svh;display:grid;place-items:center;text-align:center;padding:2rem}
+.wrap{max-width:34ch}
+.mark{height:64px;width:auto;margin:0 auto 1.6rem;display:block}
+h1{font-family:'Fraunces',serif;font-weight:340;font-size:1.7rem;line-height:1.2;margin-bottom:.7rem}
+.em{color:#dcbb84;font-style:italic}
+p{color:#a49c8c;font-size:.98rem;line-height:1.6}
+.spin{width:34px;height:34px;margin:1.8rem auto 0;border:2px solid rgba(220,187,132,.25);border-top-color:#dcbb84;border-radius:50%;animation:s 1s linear infinite}
+@keyframes s{to{transform:rotate(360deg)}}
+a{color:#dcbb84}
+.manual{margin-top:1.4rem;display:none}
+.manual a{display:inline-block;margin-top:.4rem;border:1px solid rgba(220,187,132,.4);border-radius:100px;padding:.7rem 1.4rem;font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <img class="mark" src="assets/img/al-mark.png" alt="AL Revestimentos">
+  <h1>Abrindo seu <span class="em">WhatsApp</span></h1>
+  <p id="msg">Um instante, estamos te levando para a conversa com a AL Revestimentos.</p>
+  <div class="spin" id="spin"></div>
+  <div class="manual" id="manual"><a id="go" href="#">Abrir a conversa</a></div>
+</div>
+<script>
+(function(){
+  function q(k){ return new URLSearchParams(location.search).get(k)||''; }
+  var n=q('n'), t=q('t')||'';
+  var target='';
+  var valid = n && !/X/i.test(n) && /^[0-9]{10,15}$/.test(n);
+  if(valid){ target='https://wa.me/'+n+(t?('?text='+t):''); }
+
+  // dispara evento de conversão (funciona quando houver GTM/pixel; inofensivo sem)
+  window.dataLayer=window.dataLayer||[];
+  window.dataLayer.push({event:'whatsapp_click',destino:'AL Revestimentos'});
+
+  var manual=document.getElementById('manual'), go=document.getElementById('go'), spin=document.getElementById('spin'), msg=document.getElementById('msg');
+  if(valid){
+    go.href=target;
+    setTimeout(function(){ location.href=target; },1800);
+    setTimeout(function(){ spin.style.display='none'; manual.style.display='block'; },3200);
+  } else {
+    // número ainda não configurado ([A CONFIRMAR])
+    spin.style.display='none';
+    msg.innerHTML='O número de WhatsApp ainda será configurado. Enquanto isso, fale com a AL pelo Instagram <a href="https://instagram.com/alrevestimentosexclusivos" target="_blank" rel="noopener">@alrevestimentosexclusivos</a>.';
+    manual.style.display='block';
+    go.textContent='Voltar ao site'; go.href='index.html';
+  }
+})();
+</script>
+</body>
+</html>
