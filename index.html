@@ -195,8 +195,9 @@ html.js .rv.in{opacity:1;transform:none}
 
 /* ===== CATÁLOGO NOMINAL DE PEDRAS ===== */
 .cat{position:relative;background:var(--black);color:var(--on-black);overflow:hidden}
-.cat .head-c h2{color:var(--on-black)}
-.cat .head-c p{color:var(--on-black-2)}
+.cat .head-c{max-width:min(94%,50rem)}
+/* o balance briga com o <br> e joga o titulo para tres linhas: aqui o <br> manda */
+.cat .head-c h2{color:var(--on-black);text-wrap:initial}
 /* texturas reais de obra, discretas, só para dar matéria ao fundo */
 .cat__tex{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,1fr);opacity:.13;pointer-events:none}
 .cat__tex img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.1)}
@@ -211,13 +212,6 @@ html.js .rv.in{opacity:1;transform:none}
   padding:.52rem 0 .52rem 1.3rem;position:relative;border-bottom:1px solid rgba(239,233,221,.07)}
 .cat__list li::before{content:"";position:absolute;left:0;top:1.16em;width:5px;height:5px;border-radius:50%;
   background:var(--gold);opacity:.75}
-.cat__list li span{display:block;font-family:var(--body);font-size:.76rem;letter-spacing:.04em;color:var(--on-black-2);margin-top:.18rem}
-.cat__note{margin-top:2.1rem;padding:1.4rem 1.5rem;border:1px solid rgba(193,154,86,.22);border-radius:5px;background:rgba(193,154,86,.05)}
-.cat__note p{font-size:.93rem;line-height:1.6;color:var(--on-black-2);margin:0 0 1rem}
-.cat__cta{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--body);font-size:.74rem;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--gold-bright);text-decoration:none;transition:gap .4s var(--ease),color .4s var(--ease)}
-.cat__cta svg{width:16px;height:16px}
-.cat__cta:hover{gap:.85rem;color:#fff}
 @media(min-width:760px){.cat__grid{grid-template-columns:repeat(3,1fr);gap:clamp(2rem,4vw,3.4rem)}}
 
 /* ===== DIFERENCIAIS ===== */
@@ -452,7 +446,6 @@ body.lock{overflow:hidden}
   <div class="container">
     <div class="head-c rv">
       <h2>Alguns dos revestimentos<br>exclusivos que trabalhamos</h2>
-      <p>Cada pedra tem um comportamento diferente na parede, na fachada e na água. A AL faz a seleção junto com você, projeto a projeto.</p>
     </div>
 
     <div class="cat__grid">
@@ -477,7 +470,7 @@ body.lock{overflow:hidden}
           <li>Travertino Rockface</li>
           <li>Rockface Travertino Cairo</li>
           <li>Quartzito Branco</li>
-          <li>Pedra Ferro <span>filete, 10x10 e mosaico</span></li>
+          <li>Pedra Ferro</li>
         </ul>
         <h3 class="cat__t cat__t--sp">Pisos &amp; Áreas Externas</h3>
         <ul class="cat__list">
@@ -493,13 +486,14 @@ body.lock{overflow:hidden}
           <li>Pedra Hijau</li>
           <li>Pedra Sabão BJ</li>
         </ul>
-        <div class="cat__note">
-          <p>Trabalhamos também com peças sob medida, filetes, mosaicos e formatos especiais conforme o projeto.</p>
-          <a class="cat__cta" data-wa href="#contato">Consultar disponibilidade
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-        </div>
       </div>
+    </div>
+
+    <div class="sec-cta">
+      <a class="btn btn--wa" data-wa href="#contato">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.6.2-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.5-.8-2-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.5-.3z"/><path d="M12 2A10 10 0 0 0 3.5 17.2L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+        Consultar disponibilidade
+      </a>
     </div>
   </div>
 </section>
