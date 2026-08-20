@@ -97,11 +97,7 @@ section[id]{scroll-margin-top:86px}
 .hero__title{color:#fff;font-weight:330;font-size:clamp(2.5rem,5.4vw,5.1rem);line-height:1.04;max-width:20ch;text-wrap:balance;text-shadow:0 2px 44px rgba(8,7,5,.4)}
 .hero__sub{color:rgba(255,255,255,.9);font-size:clamp(1rem,1.5vw,1.24rem);font-weight:300;max-width:46ch;margin-top:1.2rem}
 .hero__actions{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.9rem;align-items:center}
-.hero__foot{position:absolute;left:0;right:0;bottom:clamp(1.4rem,3vh,2.1rem);display:flex;align-items:center;justify-content:space-between}
-.hero__dots{display:flex;gap:.55rem;list-style:none;align-items:center}
-.hero__dots button{width:9px;height:9px;border-radius:50%;background:transparent;border:1px solid rgba(255,255,255,.5);padding:0;cursor:pointer;transition:all .45s var(--ease)}
-.hero__dots button:hover{border-color:var(--gold-bright)}
-.hero__dots li.is-active button{width:30px;border-radius:6px;background:var(--gold-bright);border-color:var(--gold-bright)}
+.hero__foot{position:absolute;left:0;right:0;bottom:clamp(1.4rem,3vh,2.1rem);display:flex;align-items:center;justify-content:flex-start}
 .hero__scroll{color:rgba(255,255,255,.78);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;display:flex;align-items:center;gap:.6rem}
 .hero__scroll span{display:block;width:1px;height:32px;background:linear-gradient(#fff,transparent);animation:drop 2.2s var(--ease) infinite}
 @keyframes drop{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
@@ -147,7 +143,7 @@ html.js .rv.in{opacity:1;transform:none}
 .prot .rule-g{background:var(--gold-bright)}
 .prot .sec-cta{justify-content:flex-start;margin-top:2.2rem}
 .prot .btn--wa{border:1px solid rgba(220,187,132,.28)}
-@media(min-width:900px){.prot__grid{grid-template-columns:1.05fr .95fr;gap:clamp(3rem,6vw,6rem)}.prot__fig{aspect-ratio:3/4}}
+@media(min-width:900px){.prot__grid{grid-template-columns:1.05fr .95fr;gap:clamp(3rem,6vw,6rem)}.prot__fig{aspect-ratio:5/6}}
 
 /* ===== PEDRAS (linhas) ===== */
 .pedras{background:var(--bg-2)}
@@ -300,10 +296,10 @@ body.lock{overflow:hidden}
 <section class="hero kb" id="topo">
   <div class="hero__slides" id="slides">
     <div class="hero__slide is-active"><img class="hero__img" src="assets/img/hero/hero-1-sm.webp" srcset="assets/img/hero/hero-1-sm.webp 900w, assets/img/hero/hero-1.webp 1760w" sizes="100vw" width="1760" height="1100" alt="Parede em Pedra Black com poltronas de couro" fetchpriority="high"></div>
-    <div class="hero__slide"><img class="hero__img" data-src="assets/img/hero/hero-2-sm.webp" data-srcset="assets/img/hero/hero-2-sm.webp 900w, assets/img/hero/hero-2.webp 1760w" sizes="100vw" width="1760" height="1100" alt="Sala com parede revestida em pedra natural"></div>
-    <div class="hero__slide"><img class="hero__img" data-src="assets/img/hero/hero-3-sm.webp" data-srcset="assets/img/hero/hero-3-sm.webp 900w, assets/img/hero/hero-3.webp 1760w" sizes="100vw" width="1760" height="1100" alt="Fachada de casa com coluna revestida em pedra"></div>
-    <div class="hero__slide"><img class="hero__img" data-src="assets/img/hero/hero-4-sm.webp" data-srcset="assets/img/hero/hero-4-sm.webp 900w, assets/img/hero/hero-4.webp 1760w" sizes="100vw" width="1760" height="1100" alt="Ambiente com lareira e parede em travertino"></div>
-    <div class="hero__slide"><img class="hero__img" data-src="assets/img/hero/hero-5-sm.webp" data-srcset="assets/img/hero/hero-5-sm.webp 900w, assets/img/hero/hero-5.webp 1760w" sizes="100vw" width="1760" height="1100" alt="Living com painel de pedra natural clara"></div>
+    <div class="hero__slide"><img class="hero__img" data-src="assets/img/hero/hero-2-sm.webp" data-srcset="assets/img/hero/hero-2-sm.webp 900w, assets/img/hero/hero-2.webp 1760w" sizes="100vw" width="1760" height="1100" alt="Living com parede em pedra natural branca e adega"></div>
+    <div class="hero__slide"><img class="hero__img" data-src="assets/img/hero/hero-3-sm.webp" data-srcset="assets/img/hero/hero-3-sm.webp 900w, assets/img/hero/hero-3.webp 1760w" sizes="100vw" width="1760" height="1100" alt="Sala de jantar com nichos iluminados em parede de pedra"></div>
+    <div class="hero__slide"><img class="hero__img" data-src="assets/img/hero/hero-4-sm.webp" data-srcset="assets/img/hero/hero-4-sm.webp 900w, assets/img/hero/hero-4.webp 1760w" sizes="100vw" width="1760" height="1100" alt="Fachada em pedra natural branca com paisagismo"></div>
+    <div class="hero__slide"><img class="hero__img" data-src="assets/img/hero/hero-5-sm.webp" data-srcset="assets/img/hero/hero-5-sm.webp 900w, assets/img/hero/hero-5.webp 1760w" sizes="100vw" width="1760" height="1100" alt="Living com pé-direito duplo e parede em pedra natural"></div>
   </div>
   <div class="hero__scrim"></div>
   <div class="hero__wrap">
@@ -323,13 +319,6 @@ body.lock{overflow:hidden}
     </div>
   </div>
   <div class="hero__foot container">
-    <ul class="hero__dots" id="dots">
-      <li class="is-active"><button aria-label="Slide 1"></button></li>
-      <li><button aria-label="Slide 2"></button></li>
-      <li><button aria-label="Slide 3"></button></li>
-      <li><button aria-label="Slide 4"></button></li>
-      <li><button aria-label="Slide 5"></button></li>
-    </ul>
     <div class="hero__scroll">Role<span></span></div>
   </div>
 </section>
@@ -363,7 +352,7 @@ body.lock{overflow:hidden}
       </div>
     </div>
     <div class="prot__fig rv rv-d1">
-      <img src="assets/img/protagonista.webp" width="1200" height="1600" loading="lazy" alt="Sala de espera com parede em pedra natural branca e luminária dourada">
+      <img src="assets/img/protagonista.webp" width="1200" height="1440" loading="lazy" alt="Sala de espera com parede em pedra natural branca e luminária dourada">
     </div>
   </div>
 </section>
@@ -556,7 +545,7 @@ body.lock{overflow:hidden}
 <section class="section dif">
   <div class="container">
     <div class="head-c rv">
-      <h2>Por que escolher AL Revestimentos Exclusivo?</h2>
+      <h2>Por que escolher AL Revestimentos Exclusivos?</h2>
     </div>
     <div class="dif__grid">
       <div class="dcard rv"><div class="dcard__n">01</div><h3>Curadoria</h3><p>As referências mais atuais e exclusivas do mercado de pedras naturais, selecionadas a dedo.</p></div>
@@ -660,15 +649,13 @@ body.lock{overflow:hidden}
 
   /* ==== Hero: slides + leads sincronizados ==== */
   var slides=[].slice.call(document.querySelectorAll('.hero__slide'));
-  var dots=[].slice.call(document.querySelectorAll('#dots li'));
   var i=0,n=slides.length,timer;
   function go(k){
-    slides[i].classList.remove('is-active'); dots[i].classList.remove('is-active');
+    slides[i].classList.remove('is-active');
     i=(k+n)%n;
-    slides[i].classList.add('is-active'); dots[i].classList.add('is-active');
+    slides[i].classList.add('is-active');
   }
   function play(){ clearInterval(timer); timer=setInterval(function(){ go(i+1); },6000); }
-  dots.forEach(function(li,k){ li.querySelector('button').addEventListener('click',function(){ go(k); play(); }); });
   if(n>1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) play();
 
   /* ==== Reveal on scroll ==== */
