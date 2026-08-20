@@ -10,10 +10,12 @@ e o rodapé em preto, botões de WhatsApp verdes por seção.
 - Imagens WebP otimizadas em `assets/img/`.
 - Logo: monograma "AL" dourado extraído (fundo transparente) em `assets/img/al-mark.png`.
 
-## [A CONFIRMAR] antes de publicar
-- Número de WhatsApp: `WHATS` no `<script>` do `index.html` e via `obrigado.html`.
-- Endereço/cidade completos (rodapé).
-- Nomes exatos das linhas de pedra (Pedra Black e Moledo confirmados nas legendas; demais descritivos).
+## Contato (confirmado pelo cliente em 20/08/2026)
+- WhatsApp: **(54) 99202-0312** → `WHATS = '5554992020312'` no `<script>` do `index.html`.
+- Endereço: **R. Quintino Biazus, 193, Santa Lúcia, Caxias do Sul, RS**. O rodapé antes dizia
+  Santa Catarina, que estava errado: a empresa é do Rio Grande do Sul.
+- Nomes das linhas conferidos com o cliente: Pedra Moledo Black, Pedra Moledo,
+  Travertino Rock Face, Fachadas em pedra, Áreas externas & pisos.
 
 ## Deploy
 Repo público no GitHub + conectar na Vercel (auto-deploy no push da main).
