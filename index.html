@@ -87,8 +87,8 @@ section[id]{scroll-margin-top:86px}
 .hero__slide.is-active{opacity:1}
 .hero__img{width:100%;height:100%;object-fit:cover;transform:scale(1.05)}
 .hero.kb .hero__slide.is-active .hero__img{transform:scale(1.13);transition:transform 8s linear}
-.hero__scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,11,9,.52) 0%,rgba(12,11,9,.14) 32%,rgba(12,11,9,.30) 60%,rgba(12,11,9,.86) 100%)}
-.hero__scrim::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,11,9,.55),transparent 56%)}
+.hero__scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,11,9,.84) 0%,rgba(12,11,9,.8) 45%,rgba(12,11,9,.93) 100%)}
+.hero__scrim::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,11,9,.34),transparent 62%)}
 .hero__wrap{position:absolute;inset:auto 0 0 0;padding-bottom:clamp(3.2rem,8vh,6rem)}
 .hero__rule{width:52px;height:1px;background:var(--gold-bright);margin-bottom:1.6rem;opacity:.9}
 .hero__leads{position:relative;display:grid}
@@ -161,11 +161,11 @@ html.js .rv.in{opacity:1;transform:none}
 .pcar__nav--prev{left:-8px}
 .pcar__nav--next{right:-8px}
 @media(max-width:640px){.pcar__nav{width:44px;height:44px}.pcar__nav--prev{left:2px}.pcar__nav--next{right:2px}}
-.pcard{position:relative;display:block;border-radius:4px;overflow:hidden;background:#000;aspect-ratio:4/5;isolation:isolate}
+.pcard{position:relative;display:block;border-radius:4px;overflow:hidden;background:#000;aspect-ratio:27/40;isolation:isolate}
 .pcard img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease);opacity:.92}
 .pcard:hover img{transform:scale(1.06)}
-.pcard__v{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,11,9,0) 34%,rgba(12,11,9,.42) 62%,rgba(12,11,9,.9) 100%)}
-.pcard__c{position:absolute;inset:auto 0 0 0;padding:clamp(1.2rem,2vw,1.7rem)}
+.pcard__v{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,11,9,.9) 0%,rgba(12,11,9,.5) 30%,rgba(12,11,9,0) 58%)}
+.pcard__c{position:absolute;inset:0 0 auto 0;padding:clamp(1.2rem,2vw,1.7rem)}
 .pcard__n{font-family:var(--display);color:#fff;font-size:1.4rem;font-weight:380;letter-spacing:-.01em}
 .pcard__d{color:rgba(255,255,255,.82);font-size:.9rem;line-height:1.55;margin-top:.4rem;font-weight:300}
 .pcard__more{display:inline-flex;align-items:center;gap:.4rem;margin-top:.7rem;color:var(--gold-bright);font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
@@ -293,13 +293,9 @@ body.lock{overflow:hidden}
 </div>
 
 <!-- HERO -->
-<section class="hero kb" id="topo">
+<section class="hero" id="topo">
   <div class="hero__slides" id="slides">
     <div class="hero__slide is-active"><img class="hero__img" src="assets/img/hero/hero-1-sm.webp" srcset="assets/img/hero/hero-1-sm.webp 900w, assets/img/hero/hero-1.webp 1760w" sizes="100vw" width="1760" height="1100" alt="Parede em Pedra Black com poltronas de couro" fetchpriority="high"></div>
-    <div class="hero__slide"><img class="hero__img" data-src="assets/img/hero/hero-2-sm.webp" data-srcset="assets/img/hero/hero-2-sm.webp 900w, assets/img/hero/hero-2.webp 1760w" sizes="100vw" width="1760" height="1100" alt="Living com parede em pedra natural branca e adega"></div>
-    <div class="hero__slide"><img class="hero__img" data-src="assets/img/hero/hero-3-sm.webp" data-srcset="assets/img/hero/hero-3-sm.webp 900w, assets/img/hero/hero-3.webp 1760w" sizes="100vw" width="1760" height="1100" alt="Sala de jantar com nichos iluminados em parede de pedra"></div>
-    <div class="hero__slide"><img class="hero__img" data-src="assets/img/hero/hero-4-sm.webp" data-srcset="assets/img/hero/hero-4-sm.webp 900w, assets/img/hero/hero-4.webp 1760w" sizes="100vw" width="1760" height="1100" alt="Fachada em pedra natural branca com paisagismo"></div>
-    <div class="hero__slide"><img class="hero__img" data-src="assets/img/hero/hero-5-sm.webp" data-srcset="assets/img/hero/hero-5-sm.webp 900w, assets/img/hero/hero-5.webp 1760w" sizes="100vw" width="1760" height="1100" alt="Living com pé-direito duplo e parede em pedra natural"></div>
   </div>
   <div class="hero__scrim"></div>
   <div class="hero__wrap">
@@ -367,16 +363,7 @@ body.lock{overflow:hidden}
     <div class="pcar rv" id="pcar">
       <div class="pcar__viewport"><div class="pcar__track" id="pcarTrack">
         <a class="pcard" data-wa href="#contato">
-          <img src="assets/img/linhas/l-black.webp" width="720" height="900" loading="lazy" alt="Parede em Pedra Moledo Black">
-          <div class="pcard__v"></div>
-          <div class="pcard__c">
-            <div class="pcard__n">Pedra Moledo Black</div>
-            <div class="pcard__d">Textura marcante e presença imponente. Transforma paredes em ambientes exclusivos.</div>
-            <span class="pcard__more">Consultar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </div>
-        </a>
-        <a class="pcard" data-wa href="#contato">
-          <img src="assets/img/linhas/l-moledo.webp" width="720" height="900" loading="lazy" alt="Fachada em Pedra Moledo">
+          <img src="assets/img/pedras/p-moledo.webp" width="720" height="1067" loading="lazy" alt="Muro em Pedra Moledo com jardim vertical e piscina">
           <div class="pcard__v"></div>
           <div class="pcard__c">
             <div class="pcard__n">Pedra Moledo</div>
@@ -385,29 +372,74 @@ body.lock{overflow:hidden}
           </div>
         </a>
         <a class="pcard" data-wa href="#contato">
-          <img src="assets/img/linhas/l-travertino.webp" width="720" height="900" loading="lazy" alt="Fachada em Travertino Rock Face">
+          <img src="assets/img/pedras/p-inka.webp" width="720" height="1067" loading="lazy" alt="Sala de estar com parede em Pedra Inka">
+          <div class="pcard__v"></div>
+          <div class="pcard__c">
+            <div class="pcard__n">Pedra Inka</div>
+            <div class="pcard__d">Bege claro de desenho irregular. Aquece o ambiente sem pesar.</div>
+            <span class="pcard__more">Consultar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+        <a class="pcard" data-wa href="#contato">
+          <img src="assets/img/pedras/p-santorini.webp" width="720" height="1067" loading="lazy" alt="Fachada em Pedra Santorini">
+          <div class="pcard__v"></div>
+          <div class="pcard__c">
+            <div class="pcard__n">Pedra Santorini</div>
+            <div class="pcard__d">Recorte irregular e tom claro: fachada com ar mediterrâneo.</div>
+            <span class="pcard__more">Consultar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+        <a class="pcard" data-wa href="#contato">
+          <img src="assets/img/pedras/p-quartzo-branca.webp" width="720" height="1067" loading="lazy" alt="Sala de espera com parede em Quartzo Branca">
+          <div class="pcard__v"></div>
+          <div class="pcard__c">
+            <div class="pcard__n">Quartzo Branca</div>
+            <div class="pcard__d">Branco luminoso de brilho sutil. Clareia o ambiente inteiro.</div>
+            <span class="pcard__more">Consultar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+        <a class="pcard" data-wa href="#contato">
+          <img src="assets/img/pedras/p-madeira-branca.webp" width="720" height="1067" loading="lazy" alt="Living de pé-direito duplo em Pedra Madeira Branca">
+          <div class="pcard__v"></div>
+          <div class="pcard__c">
+            <div class="pcard__n">Pedra Madeira Branca</div>
+            <div class="pcard__d">Granulação fina em branco quente. Boa para pé-direito alto.</div>
+            <span class="pcard__more">Consultar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+        <a class="pcard" data-wa href="#contato">
+          <img src="assets/img/pedras/p-madeira-cinza.webp" width="720" height="1067" loading="lazy" alt="Fachada e escada em Pedra Madeira Cinza">
+          <div class="pcard__v"></div>
+          <div class="pcard__c">
+            <div class="pcard__n">Pedra Madeira Cinza</div>
+            <div class="pcard__d">Cinza profundo e granulação densa. Dá base sólida à fachada.</div>
+            <span class="pcard__more">Consultar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+        <a class="pcard" data-wa href="#contato">
+          <img src="assets/img/pedras/p-travertino-rockface.webp" width="720" height="1067" loading="lazy" alt="Fachada em Travertino Rock Face">
           <div class="pcard__v"></div>
           <div class="pcard__c">
             <div class="pcard__n">Travertino Rock Face</div>
-            <div class="pcard__d">Face rústica e relevo natural: a pedra que dá volume e caráter à fachada.</div>
+            <div class="pcard__d">Face rústica e relevo natural: a pedra que dá volume à fachada.</div>
             <span class="pcard__more">Consultar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </div>
         </a>
         <a class="pcard" data-wa href="#contato">
-          <img src="assets/img/linhas/l-fachada.webp" width="720" height="900" loading="lazy" alt="Fachadas em pedra">
+          <img src="assets/img/pedras/p-travertino-filetes.webp" width="720" height="1067" loading="lazy" alt="Parede em Travertino em Filetes">
           <div class="pcard__v"></div>
           <div class="pcard__c">
-            <div class="pcard__n">Fachadas em pedra</div>
-            <div class="pcard__d">A pedra que dá caráter à arquitetura e se torna a assinatura da casa.</div>
+            <div class="pcard__n">Travertino em Filetes</div>
+            <div class="pcard__d">Filetes alinhados que criam ritmo e profundidade na parede.</div>
             <span class="pcard__more">Consultar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </div>
         </a>
         <a class="pcard" data-wa href="#contato">
-          <img src="assets/img/linhas/l-externa.webp" width="720" height="900" loading="lazy" alt="Áreas externas e pisos">
+          <img src="assets/img/pedras/p-sabao.webp" width="720" height="1067" loading="lazy" alt="Piscina revestida em Pedra Sabão">
           <div class="pcard__v"></div>
           <div class="pcard__c">
-            <div class="pcard__n">Áreas externas & pisos</div>
-            <div class="pcard__d">Do jardim à circulação, a pedra natural que valoriza cada percurso.</div>
+            <div class="pcard__n">Pedra Sabão</div>
+            <div class="pcard__d">Verde que muda com a luz da água. Piscinas e áreas molhadas.</div>
             <span class="pcard__more">Consultar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </div>
         </a>
