@@ -81,24 +81,27 @@ section[id]{scroll-margin-top:86px}
 .nav.is-solid .nav__burger span{background:var(--ink)}
 
 /* ===== HERO ===== */
-.hero{position:relative;height:100svh;min-height:600px;overflow:hidden;background:var(--black)}
-.hero__slides{position:absolute;inset:0}
-.hero__slide{position:absolute;inset:0;opacity:0;transition:opacity 1.5s var(--ease)}
-.hero__slide.is-active{opacity:1}
-.hero__img{width:100%;height:100%;object-fit:cover;transform:scale(1.05)}
-.hero.kb .hero__slide.is-active .hero__img{transform:scale(1.13);transition:transform 8s linear}
-.hero__scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,11,9,.84) 0%,rgba(12,11,9,.8) 45%,rgba(12,11,9,.93) 100%)}
-.hero__scrim::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,11,9,.34),transparent 62%)}
-.hero__wrap{position:absolute;inset:auto 0 0 0;padding-bottom:clamp(3.2rem,8vh,6rem)}
+.hero{position:relative;min-height:100svh;overflow:hidden;background:var(--black);display:flex;align-items:center;padding:clamp(6rem,12vh,8rem) 0 clamp(3rem,6vh,4rem)}
+.hero__grid{display:grid;grid-template-columns:1fr;gap:clamp(2.4rem,5vw,3.5rem);align-items:center;width:100%}
 .hero__rule{width:52px;height:1px;background:var(--gold-bright);margin-bottom:1.6rem;opacity:.9}
-.hero__leads{position:relative;display:grid}
-.hero__lead{grid-area:1/1;opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease),transform .7s var(--ease);pointer-events:none}
-.hero__lead.is-active{opacity:1;transform:none;pointer-events:auto;transition:opacity .85s .34s var(--ease),transform .95s .34s var(--ease)}
-.hero__title{color:#fff;font-weight:330;font-size:clamp(2.5rem,5.4vw,5.1rem);line-height:1.04;max-width:20ch;text-wrap:balance;text-shadow:0 2px 44px rgba(8,7,5,.4)}
-.hero__sub{color:rgba(255,255,255,.9);font-size:clamp(1rem,1.5vw,1.24rem);font-weight:300;max-width:46ch;margin-top:1.2rem}
+.hero__title{color:#fff;font-weight:330;font-size:clamp(2.5rem,5.4vw,4.6rem);line-height:1.04;max-width:16ch;text-wrap:balance}
+.hero__sub{color:rgba(255,255,255,.82);font-size:clamp(1rem,1.5vw,1.18rem);font-weight:300;max-width:44ch;margin-top:1.2rem;line-height:1.7}
 .hero__actions{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.9rem;align-items:center}
+/* galeria: duas colunas em sentidos opostos, como o cliente pediu */
+.hero__gal{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(.6rem,1vw,.85rem);height:clamp(360px,52vh,520px);overflow:hidden;-webkit-mask-image:linear-gradient(180deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(180deg,transparent,#000 12%,#000 88%,transparent)}
+.hero__gcol{display:flex;flex-direction:column;gap:clamp(.6rem,1vw,.85rem);will-change:transform}
+.hero__gcol.roda{animation:subir 38s linear infinite}
+.hero__gcol--down.roda{animation:descer 46s linear infinite}
+.hero__gal img{width:100%;height:auto;display:block;border-radius:6px;background:#1a1815}
+@keyframes subir{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+@keyframes descer{from{transform:translateY(-50%)}to{transform:translateY(0)}}
+@media(min-width:900px){
+  .hero__grid{grid-template-columns:1.02fr .98fr;gap:clamp(3rem,6vw,5rem)}
+  .hero__gal{height:min(78vh,700px)}
+}
+@media(prefers-reduced-motion:reduce){.hero__gcol.roda{animation:none}}
 .hero__foot{position:absolute;left:0;right:0;bottom:clamp(1.4rem,3vh,2.1rem);display:flex;align-items:center;justify-content:flex-start}
-.hero__scroll{color:rgba(255,255,255,.78);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;display:flex;align-items:center;gap:.6rem}
+.hero__scroll{color:rgba(255,255,255,.6);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;display:flex;align-items:center;gap:.6rem}
 .hero__scroll span{display:block;width:1px;height:32px;background:linear-gradient(#fff,transparent);animation:drop 2.2s var(--ease) infinite}
 @keyframes drop{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 
@@ -257,7 +260,6 @@ body.lock{overflow:hidden}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation-duration:.001ms!important;transition-duration:.001ms!important}
-  .hero.kb .hero__slide.is-active .hero__img{transform:none}
 }
 </style>
 </head>
@@ -293,24 +295,37 @@ body.lock{overflow:hidden}
 </div>
 
 <!-- HERO -->
+<main>
 <section class="hero" id="topo">
-  <div class="hero__slides" id="slides">
-    <div class="hero__slide is-active"><img class="hero__img" src="assets/img/hero/hero-1-sm.webp" srcset="assets/img/hero/hero-1-sm.webp 900w, assets/img/hero/hero-1.webp 1760w" sizes="100vw" width="1760" height="1100" alt="Parede em Pedra Black com poltronas de couro" fetchpriority="high"></div>
-  </div>
-  <div class="hero__scrim"></div>
-  <div class="hero__wrap">
-    <div class="container">
+  <div class="container hero__grid">
+    <div>
       <div class="hero__rule"></div>
-      <div class="hero__leads">
-        <h1 class="hero__title">A pedra que vira <span class="em">protagonista</span> do ambiente.</h1>
-        <p class="hero__sub">Pedras naturais selecionadas para projetos de alto padrão que valorizam a arquitetura.</p>
-        <div class="hero__actions">
-          <a class="btn btn--wa" data-wa href="#contato">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.6.2-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.5-.8-2-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.5-.3z"/><path d="M12 2A10 10 0 0 0 3.5 17.2L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
-            Quero falar com o especialista
-          </a>
-          <a class="btn btn--ghost" href="#pedras">Ver as pedras</a>
-        </div>
+      <h1 class="hero__title">A pedra que vira <span class="em">protagonista</span> do ambiente.</h1>
+      <p class="hero__sub">Pedras naturais selecionadas para projetos de alto padrão que valorizam a arquitetura.</p>
+      <div class="hero__actions">
+        <a class="btn btn--wa" data-wa href="#contato">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.6.2-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.5-.8-2-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.5-.3z"/><path d="M12 2A10 10 0 0 0 3.5 17.2L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+          Quero falar com o especialista
+        </a>
+        <a class="btn btn--ghost" href="#pedras">Ver as pedras</a>
+      </div>
+    </div>
+    <div class="hero__gal" aria-hidden="true">
+      <div class="hero__gcol" id="gcolA">
+      <picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-01-sm.webp"><img src="assets/img/ambientes/n-01.webp" width="560" height="560" alt="Living com pé-direito duplo e parede em pedra natural"></picture>
+      <picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-04-sm.webp"><img src="assets/img/ambientes/n-04.webp" width="560" height="560" alt="Sala de jantar com parede de pedra e nichos iluminados"></picture>
+      <picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-13-sm.webp"><img src="assets/img/ambientes/n-13.webp" width="560" height="560" alt="Fachada em pedra natural com escada e paisagismo"></picture>
+      <picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-09-sm.webp"><img src="assets/img/ambientes/n-09.webp" width="560" height="560" loading="lazy" alt="Quarto com parede em pedra natural branca"></picture>
+      <picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-19-sm.webp"><img src="assets/img/ambientes/n-19.webp" width="560" height="560" loading="lazy" alt="Piscina revestida em pedra natural verde"></picture>
+      <picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-06-sm.webp"><img src="assets/img/ambientes/n-06.webp" width="560" height="560" loading="lazy" alt="Sala com pedra natural e teto ripado em madeira"></picture>
+      </div>
+      <div class="hero__gcol hero__gcol--down" id="gcolB">
+      <picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-02-sm.webp"><img src="assets/img/ambientes/n-02.webp" width="560" height="560" alt="Living integrado com parede de pedra e adega"></picture>
+      <picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-15-sm.webp"><img src="assets/img/ambientes/n-15.webp" width="560" height="560" alt="Fachada em pedra natural branca"></picture>
+      <picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-05-sm.webp"><img src="assets/img/ambientes/n-05.webp" width="560" height="560" alt="Escada com parede em pedra natural clara"></picture>
+      <picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-11-sm.webp"><img src="assets/img/ambientes/n-11.webp" width="560" height="560" loading="lazy" alt="Spa com coluna revestida em pedra"></picture>
+      <picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-03-sm.webp"><img src="assets/img/ambientes/n-03.webp" width="560" height="560" loading="lazy" alt="Sala de estar com parede em pedra natural branca"></picture>
+      <picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-07-sm.webp"><img src="assets/img/ambientes/n-07.webp" width="560" height="560" loading="lazy" alt="Hall com parede em pedra e console de madeira"></picture>
       </div>
     </div>
   </div>
@@ -528,40 +543,40 @@ body.lock{overflow:hidden}
     </div>
     <div class="marquee rv" id="ambMarquee" aria-label="Ambientes com pedra natural">
       <div class="marquee__track" id="ambTrack">
-        <div class="mitem"><img src="assets/img/ambientes/n-01.webp" width="560" height="560" loading="lazy" alt="Living com pé-direito duplo e parede em pedra natural"></div>
-        <div class="mitem"><img src="assets/img/ambientes/a-3.webp" width="560" height="560" loading="lazy" alt="Painel de pedra natural na sala de estar"></div>
-        <div class="mitem"><img src="assets/img/ambientes/n-02.webp" width="560" height="560" loading="lazy" alt="Living integrado com parede de pedra e adega"></div>
-        <div class="mitem"><img src="assets/img/ambientes/n-25.webp" width="560" height="560" loading="lazy" alt="Lavabo com bancada em pedra natural"></div>
-        <div class="mitem"><img src="assets/img/ambientes/a-5.webp" width="560" height="560" loading="lazy" alt="Lareira revestida em travertino"></div>
-        <div class="mitem"><img src="assets/img/ambientes/n-04.webp" width="560" height="560" loading="lazy" alt="Sala de jantar com parede de pedra e nichos iluminados"></div>
-        <div class="mitem"><img src="assets/img/ambientes/n-05.webp" width="560" height="560" loading="lazy" alt="Escada com parede em pedra natural clara"></div>
-        <div class="mitem"><img src="assets/img/ambientes/n-06.webp" width="560" height="560" loading="lazy" alt="Sala com pedra natural e teto ripado em madeira"></div>
-        <div class="mitem"><img src="assets/img/ambientes/a-12.webp" width="560" height="560" loading="lazy" alt="Painel de pedra natural clara na sala"></div>
-        <div class="mitem"><img src="assets/img/ambientes/n-07.webp" width="560" height="560" loading="lazy" alt="Hall com parede em pedra e console de madeira"></div>
-        <div class="mitem"><img src="assets/img/ambientes/n-08.webp" width="560" height="560" loading="lazy" alt="Lavabo com marcenaria e parede em pedra natural"></div>
-        <div class="mitem"><img src="assets/img/ambientes/n-09.webp" width="560" height="560" loading="lazy" alt="Quarto com parede em pedra natural branca"></div>
-        <div class="mitem"><img src="assets/img/ambientes/n-10.webp" width="560" height="560" loading="lazy" alt="Sala com lareira e revestimento em pedra clara"></div>
-        <div class="mitem"><img src="assets/img/ambientes/a-10.webp" width="560" height="560" loading="lazy" alt="Hall de entrada"></div>
-        <div class="mitem"><img src="assets/img/ambientes/n-11.webp" width="560" height="560" loading="lazy" alt="Spa com coluna revestida em pedra e vista para a cidade"></div>
-        <div class="mitem"><img src="assets/img/ambientes/n-12.webp" width="560" height="560" loading="lazy" alt="Living amplo com parede em pedra natural"></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-01-sm.webp"><img src="assets/img/ambientes/n-01.webp" width="560" height="560" loading="lazy" alt="Living com pé-direito duplo e parede em pedra natural"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/a-3-sm.webp"><img src="assets/img/ambientes/a-3.webp" width="560" height="560" loading="lazy" alt="Painel de pedra natural na sala de estar"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-02-sm.webp"><img src="assets/img/ambientes/n-02.webp" width="560" height="560" loading="lazy" alt="Living integrado com parede de pedra e adega"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-25-sm.webp"><img src="assets/img/ambientes/n-25.webp" width="560" height="560" loading="lazy" alt="Lavabo com bancada em pedra natural"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/a-5-sm.webp"><img src="assets/img/ambientes/a-5.webp" width="560" height="560" loading="lazy" alt="Lareira revestida em travertino"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-04-sm.webp"><img src="assets/img/ambientes/n-04.webp" width="560" height="560" loading="lazy" alt="Sala de jantar com parede de pedra e nichos iluminados"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-05-sm.webp"><img src="assets/img/ambientes/n-05.webp" width="560" height="560" loading="lazy" alt="Escada com parede em pedra natural clara"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-06-sm.webp"><img src="assets/img/ambientes/n-06.webp" width="560" height="560" loading="lazy" alt="Sala com pedra natural e teto ripado em madeira"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/a-12-sm.webp"><img src="assets/img/ambientes/a-12.webp" width="560" height="560" loading="lazy" alt="Painel de pedra natural clara na sala"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-07-sm.webp"><img src="assets/img/ambientes/n-07.webp" width="560" height="560" loading="lazy" alt="Hall com parede em pedra e console de madeira"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-08-sm.webp"><img src="assets/img/ambientes/n-08.webp" width="560" height="560" loading="lazy" alt="Lavabo com marcenaria e parede em pedra natural"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-09-sm.webp"><img src="assets/img/ambientes/n-09.webp" width="560" height="560" loading="lazy" alt="Quarto com parede em pedra natural branca"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-10-sm.webp"><img src="assets/img/ambientes/n-10.webp" width="560" height="560" loading="lazy" alt="Sala com lareira e revestimento em pedra clara"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/a-10-sm.webp"><img src="assets/img/ambientes/a-10.webp" width="560" height="560" loading="lazy" alt="Hall de entrada"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-11-sm.webp"><img src="assets/img/ambientes/n-11.webp" width="560" height="560" loading="lazy" alt="Spa com coluna revestida em pedra e vista para a cidade"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-12-sm.webp"><img src="assets/img/ambientes/n-12.webp" width="560" height="560" loading="lazy" alt="Living amplo com parede em pedra natural"></picture></div>
       </div>
     </div>
     <div class="marquee marquee--rev rv" id="ambMarquee2" aria-label="Fachadas e áreas externas em pedra natural">
       <div class="marquee__track" id="ambTrack2">
-        <div class="mitem"><img src="assets/img/ambientes/n-13.webp" width="560" height="560" loading="lazy" alt="Fachada em pedra natural com escada e paisagismo"></div>
-        <div class="mitem"><img src="assets/img/ambientes/n-14.webp" width="560" height="560" loading="lazy" alt="Fachada revestida em pedra com paisagismo tropical"></div>
-        <div class="mitem"><img src="assets/img/ambientes/n-15.webp" width="560" height="560" loading="lazy" alt="Fachada em pedra natural branca"></div>
-        <div class="mitem"><img src="assets/img/ambientes/n-03.webp" width="560" height="560" loading="lazy" alt="Sala de estar com parede em pedra natural branca"></div>
-        <div class="mitem"><img src="assets/img/ambientes/n-16.webp" width="560" height="560" loading="lazy" alt="Fachada com pedra natural e portal em madeira"></div>
-        <div class="mitem"><img src="assets/img/ambientes/n-17.webp" width="560" height="560" loading="lazy" alt="Fachada lateral revestida em pedra natural"></div>
-        <div class="mitem"><img src="assets/img/ambientes/n-18.webp" width="560" height="560" loading="lazy" alt="Residência com fachada em pedra e piscina"></div>
-        <div class="mitem"><img src="assets/img/ambientes/n-19.webp" width="560" height="560" loading="lazy" alt="Piscina revestida em pedra natural verde"></div>
-        <div class="mitem"><img src="assets/img/ambientes/n-20.webp" width="560" height="560" loading="lazy" alt="Piscina com borda em pedra e vista para a mata"></div>
-        <div class="mitem"><img src="assets/img/ambientes/n-21.webp" width="560" height="560" loading="lazy" alt="Piscina revestida em pedra natural com deck de madeira"></div>
-        <div class="mitem"><img src="assets/img/ambientes/a-9.webp" width="560" height="560" loading="lazy" alt="Caminho de pedra no jardim"></div>
-        <div class="mitem"><img src="assets/img/ambientes/n-22.webp" width="560" height="560" loading="lazy" alt="Área de lazer com piscina e parede em pedra natural"></div>
-        <div class="mitem"><img src="assets/img/ambientes/n-23.webp" width="560" height="560" loading="lazy" alt="Piscina com revestimento em pedra e área externa"></div>
-        <div class="mitem"><img src="assets/img/ambientes/n-24.webp" width="560" height="560" loading="lazy" alt="Adega com parede em pedra natural"></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-13-sm.webp"><img src="assets/img/ambientes/n-13.webp" width="560" height="560" loading="lazy" alt="Fachada em pedra natural com escada e paisagismo"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-14-sm.webp"><img src="assets/img/ambientes/n-14.webp" width="560" height="560" loading="lazy" alt="Fachada revestida em pedra com paisagismo tropical"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-15-sm.webp"><img src="assets/img/ambientes/n-15.webp" width="560" height="560" loading="lazy" alt="Fachada em pedra natural branca"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-03-sm.webp"><img src="assets/img/ambientes/n-03.webp" width="560" height="560" loading="lazy" alt="Sala de estar com parede em pedra natural branca"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-16-sm.webp"><img src="assets/img/ambientes/n-16.webp" width="560" height="560" loading="lazy" alt="Fachada com pedra natural e portal em madeira"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-17-sm.webp"><img src="assets/img/ambientes/n-17.webp" width="560" height="560" loading="lazy" alt="Fachada lateral revestida em pedra natural"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-18-sm.webp"><img src="assets/img/ambientes/n-18.webp" width="560" height="560" loading="lazy" alt="Residência com fachada em pedra e piscina"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-19-sm.webp"><img src="assets/img/ambientes/n-19.webp" width="560" height="560" loading="lazy" alt="Piscina revestida em pedra natural verde"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-20-sm.webp"><img src="assets/img/ambientes/n-20.webp" width="560" height="560" loading="lazy" alt="Piscina com borda em pedra e vista para a mata"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-21-sm.webp"><img src="assets/img/ambientes/n-21.webp" width="560" height="560" loading="lazy" alt="Piscina revestida em pedra natural com deck de madeira"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/a-9-sm.webp"><img src="assets/img/ambientes/a-9.webp" width="560" height="560" loading="lazy" alt="Caminho de pedra no jardim"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-22-sm.webp"><img src="assets/img/ambientes/n-22.webp" width="560" height="560" loading="lazy" alt="Área de lazer com piscina e parede em pedra natural"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-23-sm.webp"><img src="assets/img/ambientes/n-23.webp" width="560" height="560" loading="lazy" alt="Piscina com revestimento em pedra e área externa"></picture></div>
+        <div class="mitem"><picture><source media="(max-width:900px)" srcset="assets/img/ambientes/n-24-sm.webp"><img src="assets/img/ambientes/n-24.webp" width="560" height="560" loading="lazy" alt="Adega com parede em pedra natural"></picture></div>
       </div>
     </div>
     <div class="sec-cta">
@@ -604,6 +619,8 @@ body.lock{overflow:hidden}
 </section>
 
 <!-- FOOTER -->
+</main>
+
 <footer class="footer">
   <div class="container">
     <div class="footer__top">
@@ -669,26 +686,25 @@ body.lock{overflow:hidden}
   });
   mnav.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',closeM); });
 
-  /* ==== Hero: carrega slides 2-5 só depois do primeiro paint (LCP enxuto) ==== */
-  function loadRest(){
-    document.querySelectorAll('.hero__img[data-src]').forEach(function(im){
-      if(im.dataset.srcset) im.srcset=im.dataset.srcset;
-      im.src=im.dataset.src; im.removeAttribute('data-src');
+  /* ==== Hero: as duas colunas so duplicam e comecam a rodar depois do load.
+     Duplicar antes encheria o caminho critico de imagem e afundaria o LCP;
+     e o lazy nao vale sob transform, entao o resto e destravado aqui na mao. ==== */
+  function ligarGaleria(){
+    ['gcolA','gcolB'].forEach(function(id){
+      var c=document.getElementById(id);
+      if(!c||c.dataset.pronto) return;
+      c.querySelectorAll('img[loading="lazy"]').forEach(function(im){ im.removeAttribute('loading'); });
+      var copia=document.createDocumentFragment();
+      [].slice.call(c.children).forEach(function(x){ copia.appendChild(x.cloneNode(true)); });
+      c.appendChild(copia);
+      c.dataset.pronto='1';
+      c.classList.add('roda');
     });
   }
-  if(document.readyState==='complete') setTimeout(loadRest,300);
-  else window.addEventListener('load',function(){ setTimeout(loadRest,300); });
-
-  /* ==== Hero: slides + leads sincronizados ==== */
-  var slides=[].slice.call(document.querySelectorAll('.hero__slide'));
-  var i=0,n=slides.length,timer;
-  function go(k){
-    slides[i].classList.remove('is-active');
-    i=(k+n)%n;
-    slides[i].classList.add('is-active');
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    if(document.readyState==='complete') setTimeout(ligarGaleria,300);
+    else window.addEventListener('load',function(){ setTimeout(ligarGaleria,300); });
   }
-  function play(){ clearInterval(timer); timer=setInterval(function(){ go(i+1); },6000); }
-  if(n>1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) play();
 
   /* ==== Reveal on scroll ==== */
   var io=new IntersectionObserver(function(es){
@@ -705,19 +721,30 @@ body.lock{overflow:hidden}
   (function(){
     var amb=document.getElementById('ambientes');
     var ids=['ambTrack','ambTrack2'];
+    var TETO_MOBILE=10;
     function montar(){
       ids.forEach(function(id){
         var mt=document.getElementById(id);
         if(!mt||mt.dataset.pronto) return;
+        /* no celular a fita inteira sao ~60 imagens de uma vez: em 4G a faixa
+           passava segundos em branco. Corta a lista antes de destravar. */
+        if(window.innerWidth<900){
+          [].slice.call(mt.children).slice(TETO_MOBILE).forEach(function(c){ c.remove(); });
+        }
         mt.querySelectorAll('img[loading="lazy"]').forEach(function(im){ im.removeAttribute('loading'); });
-        mt.innerHTML += mt.innerHTML;
+        /* clonar, e nao reescrever o innerHTML: reescrever recria todos os nos
+           e cancela o download das imagens que ja estavam baixando, o que no
+           celular deixava a fita em branco por varios segundos. */
+        var copia=document.createDocumentFragment();
+        [].slice.call(mt.children).forEach(function(c){ copia.appendChild(c.cloneNode(true)); });
+        mt.appendChild(copia);
         mt.dataset.pronto='1';
       });
     }
     if(!amb||!('IntersectionObserver' in window)){ montar(); return; }
     var io=new IntersectionObserver(function(es){
       es.forEach(function(e){ if(e.isIntersecting){ montar(); io.disconnect(); } });
-    },{rootMargin:'400px 0px'});
+    },{rootMargin:'1400px 0px'});
     io.observe(amb);
   })();
 
