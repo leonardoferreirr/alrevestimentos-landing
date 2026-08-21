@@ -156,7 +156,7 @@ html.js .rv.in{opacity:1;transform:none}
 /* carrossel Netflix das pedras (avança só ao clicar, loop infinito) */
 .pcar{position:relative}
 .pcar__viewport{overflow:hidden}
-.pcar__track{display:flex;gap:clamp(.9rem,1.6vw,1.4rem);transition:transform .6s var(--ease);will-change:transform}
+.pcar__track{display:flex;align-items:flex-start;gap:clamp(.9rem,1.6vw,1.4rem);transition:transform .6s var(--ease);will-change:transform}
 .pcar__track .pcard{flex:0 0 auto}
 .pcar__nav{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:52px;height:52px;border-radius:50%;background:rgba(255,253,249,.92);backdrop-filter:blur(6px);border:1px solid var(--line);display:grid;place-items:center;cursor:pointer;color:var(--ink);box-shadow:0 10px 30px rgba(24,21,17,.16);transition:transform .3s var(--ease),background .3s}
 .pcar__nav:hover{background:#fff;transform:translateY(-50%) scale(1.07)}
@@ -755,6 +755,11 @@ body.lock{overflow:hidden}
     var prevBtn=document.getElementById('pcarPrev'), nextBtn=document.getElementById('pcarNext');
     var originals=[].slice.call(track.children), N=originals.length;
     if(N<2) return;
+    /* o track anda por transform, e o lazy do browser olha a posicao de LAYOUT:
+       com a fita deslocada, o Safari conclui que os cards estao fora da tela e
+       nunca baixa as fotos (no celular a secao aparecia vazia). Destrava antes
+       de clonar, senao os clones nascem com o lazy de volta. */
+    track.querySelectorAll('img[loading="lazy"]').forEach(function(im){ im.removeAttribute('loading'); });
     var before=document.createDocumentFragment(), after=document.createDocumentFragment();
     originals.forEach(function(c){ before.appendChild(c.cloneNode(true)); after.appendChild(c.cloneNode(true)); });
     track.insertBefore(before, track.firstChild); track.appendChild(after);
