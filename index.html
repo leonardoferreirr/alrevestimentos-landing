@@ -13,12 +13,24 @@
 
 <link rel="preload" href="assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" href="assets/img/hero/hero-1-sm.webp" imagesrcset="assets/img/hero/hero-1-sm.webp 900w, assets/img/hero/hero-1.webp 1760w" imagesizes="100vw" fetchpriority="high">
+<!-- Primeiras fotos das duas colunas do hero: são elas que pintam a tela.
+     O hero antigo (hero-1) saiu quando as colunas entraram; o preload dele
+     continuava aqui, baixando 288 KB que nunca apareciam na página. -->
+<link rel="preload" as="image" href="assets/img/ambientes/n-01.webp" media="(min-width:901px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/img/ambientes/n-01-sm.webp" media="(max-width:900px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/img/ambientes/n-02.webp" media="(min-width:901px)">
+<link rel="preload" as="image" href="assets/img/ambientes/n-02-sm.webp" media="(max-width:900px)">
 
+<!-- Open Graph exige URL absoluta: com caminho relativo o WhatsApp e o Facebook
+     não montam o preview. Trocar os três pelo domínio próprio quando ele subir. -->
+<link rel="canonical" href="https://alrevestimentos.vercel.app/">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://alrevestimentos.vercel.app/">
 <meta property="og:title" content="AL Revestimentos Exclusivos · Pedra natural para projetos de alto padrão">
 <meta property="og:description" content="Pedras naturais selecionadas para projetos que valorizam a arquitetura.">
-<meta property="og:image" content="assets/img/hero/hero-1.webp">
+<meta property="og:image" content="https://alrevestimentos.vercel.app/assets/img/ambientes/n-01.webp">
+<meta property="og:image:width" content="560">
+<meta property="og:image:height" content="560">
 <meta property="og:locale" content="pt_BR">
 
 <style>
@@ -69,9 +81,10 @@ section[id]{scroll-margin-top:86px}
 .nav__links a:hover{opacity:1}.nav__links a:hover::after{width:100%}
 .nav__cta{font-family:var(--body);font-weight:600;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(255,255,255,.5);color:#fff;padding:.6rem 1.2rem;border-radius:100px;transition:all .35s var(--ease)}
 .nav__cta:hover{background:#fff;color:var(--black);border-color:#fff}
-.nav__burger{display:none;background:none;border:0;cursor:pointer;width:32px;height:22px;position:relative}
-.nav__burger span{position:absolute;left:0;height:1.6px;width:100%;background:#fff;transition:.35s var(--ease)}
-.nav__burger span:nth-child(1){top:2px}.nav__burger span:nth-child(2){top:10px}.nav__burger span:nth-child(3){top:18px}
+/* o traço tem 32x22, mas o botão precisa de 44x44 para ser um alvo de toque decente */
+.nav__burger{display:none;background:none;border:0;cursor:pointer;width:44px;height:44px;position:relative;padding:11px 6px;margin-right:-6px}
+.nav__burger span{position:absolute;left:6px;height:1.6px;width:32px;background:#fff;transition:.35s var(--ease)}
+.nav__burger span:nth-child(1){top:13px}.nav__burger span:nth-child(2){top:21px}.nav__burger span:nth-child(3){top:29px}
 .nav.is-solid{background:rgba(247,245,240,.92);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
 .nav.is-solid .nav__name{color:var(--ink)}
 .nav.is-solid .nav__name i{color:var(--gold-deep)}
@@ -241,8 +254,10 @@ html.js .rv.in{opacity:1;transform:none}
 .footer__name i{font-style:normal;font-weight:500;color:var(--gold-bright)}
 .footer__tag{max-width:34ch;font-size:.96rem;line-height:1.7;color:var(--on-black-2)}
 .footer__k{font-family:var(--body);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-bright);margin-bottom:1rem;font-weight:600}
-.footer__list{list-style:none;display:grid;gap:.7rem}
-.footer__list a,.footer__list span{color:var(--on-black);font-size:.96rem;transition:color .3s}
+/* o gap encolhe na mesma medida em que o link cresce: a área de toque sai de
+   21px para ~35px sem que o rodapé mude de altura */
+.footer__list{list-style:none;display:grid;gap:.2rem}
+.footer__list a,.footer__list span{color:var(--on-black);font-size:.96rem;transition:color .3s;display:inline-flex;align-items:center;padding-block:.42rem}
 .footer__list a:hover{color:var(--gold-bright)}
 .footer__tbc{color:var(--on-black-2);font-size:.78rem;font-style:italic;opacity:.7}
 .footer__base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.8rem;padding-top:1.8rem;font-size:.8rem;color:var(--on-black-2)}
@@ -291,6 +306,7 @@ body.lock{overflow:hidden}
 <div class="mnav" id="mnav" aria-hidden="true">
   <a href="#marca">A marca</a>
   <a href="#pedras">As pedras</a>
+  <a href="#catalogo">Catálogo</a>
   <a href="#ambientes">Ambientes</a>
   <a href="#contato">Contato</a>
   <a class="small" data-wa href="#contato">Falar no WhatsApp</a>
@@ -645,6 +661,7 @@ body.lock{overflow:hidden}
         <ul class="footer__list">
           <li><a href="#marca">A marca</a></li>
           <li><a href="#pedras">As pedras</a></li>
+          <li><a href="#catalogo">Catálogo</a></li>
           <li><a href="#ambientes">Ambientes</a></li>
           <li><a data-wa href="#contato">Orçamento</a></li>
         </ul>
@@ -681,10 +698,13 @@ body.lock{overflow:hidden}
 
   /* ==== Menu mobile ==== */
   var burger=document.getElementById('burger'), mnav=document.getElementById('mnav');
-  function closeM(){ mnav.classList.remove('open'); document.body.classList.remove('lock'); burger.setAttribute('aria-expanded','false'); }
+  function closeM(){ mnav.classList.remove('open'); mnav.setAttribute('aria-hidden','true'); document.body.classList.remove('lock'); burger.setAttribute('aria-expanded','false'); }
   burger.addEventListener('click',function(){
     var open=mnav.classList.toggle('open'); document.body.classList.toggle('lock',open);
     burger.setAttribute('aria-expanded',open?'true':'false');
+    // sem isto o menu abre na tela mas continua invisível para leitor de tela
+    mnav.setAttribute('aria-hidden',open?'false':'true');
+    burger.setAttribute('aria-label',open?'Fechar menu':'Abrir menu');
   });
   mnav.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',closeM); });
 
