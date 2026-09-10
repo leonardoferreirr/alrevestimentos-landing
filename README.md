@@ -20,11 +20,12 @@ e o rodapé em preto, botões de WhatsApp verdes por seção.
 ## Deploy
 Repo público no GitHub + conectar na Vercel (auto-deploy no push da main).
 
-### O endereço da Vercel não vai para o Google
-`alrevestimentos.vercel.app` responde com `X-Robots-Tag: noindex, nofollow`.
-A regra no `vercel.json` tem um `has` de host, então vale **só** nesse
-endereço: no dia em que o domínio próprio do cliente entrar, ele indexa
-normalmente sem precisar mexer em nada. Isso é de propósito — um `noindex`
+### Os endereços da Vercel não vão para o Google
+Todo host terminado em `.vercel.app` responde com
+`X-Robots-Tag: noindex, nofollow`: o endereço principal, os de pré-visualização
+e os de branch. A regra no `vercel.json` casa o host por expressão regular,
+então vale **só** nesses endereços: no dia em que o domínio próprio do cliente
+entrar, ele indexa normalmente sem precisar mexer em nada. Isso é de propósito — um `noindex`
 solto no repositório é o tipo de coisa que ninguém lembra de tirar e que
 mantém o site oficial fora da busca por meses.
 
