@@ -1,0 +1,12 @@
+# Rastreamento liberado de proposito, inclusive no endereco da Vercel.
+#
+# Para o Google TIRAR uma pagina do indice, ele precisa entrar nela e ler o
+# "noindex". Bloquear aqui faria o contrario do que se quer: sem entrar, ele
+# nunca le a instrucao, e a URL fica presa no indice sem nem o resumo.
+#
+# Quem tira alrevestimentos.vercel.app da busca e o cabecalho X-Robots-Tag do
+# vercel.json, aplicado so naquele dominio. O dominio oficial, quando existir,
+# indexa normalmente.
+
+User-agent: *
+Allow: /
