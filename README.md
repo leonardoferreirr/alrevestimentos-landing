@@ -37,3 +37,13 @@ Se a URL já estiver na busca, o `noindex` sozinho leva semanas. Para tirar em
 um ou dois dias, pedir pela ferramenta pública do Google, que não exige ter o
 domínio verificado:
 <https://search.google.com/search-console/remove-outdated-content>
+
+### Se o endereço da Vercel voltar a dar 404
+Foi o *deployment* que sumiu, não o projeto: o projeto `alrevestimentos`
+continua na conta e o apelido `alrevestimentos.vercel.app` continua reservado,
+só que sem nada por trás. Basta um push na `main` para a Vercel construir de
+novo e o endereço voltar.
+
+Apagar o deployment não tira nada do Google, e ainda piora: o resultado
+continua na busca por semanas e quem clica cai numa tela de erro da Vercel em
+vez do site.
