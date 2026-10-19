@@ -2,6 +2,13 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KNGBJZ93');</script>
+<!-- End Google Tag Manager -->
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18517365951"></script>
 <script>
@@ -33,6 +40,10 @@ a{color:#dcbb84}
 </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KNGBJZ93"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <div class="wrap">
   <img class="mark" src="assets/img/al-logo.webp" alt="AL Revestimentos Exclusivos">
   <h1>Abrindo seu <span class="em">WhatsApp</span></h1>
@@ -48,14 +59,33 @@ a{color:#dcbb84}
   var valid = n && !/X/i.test(n) && /^[0-9]{10,15}$/.test(n);
   if(valid){ target='https://wa.me/'+n+(t?('?text='+t):''); }
 
-  // dispara evento de conversão (funciona quando houver GTM/pixel; inofensivo sem)
-  window.dataLayer=window.dataLayer||[];
-  window.dataLayer.push({event:'whatsapp_click',destino:'AL Revestimentos Exclusivos'});
-
   var manual=document.getElementById('manual'), go=document.getElementById('go'), spin=document.getElementById('spin'), msg=document.getElementById('msg');
+
+  // conversão: o GTM chama o eventCallback depois que todas as tags do evento disparam
+  // (ou na hora, se nenhuma estiver ligada). Só então abre o WhatsApp, com 0,9 s de tela
+  // mínima e teto de 2,6 s para quando o GTM estiver bloqueado e o callback nunca vier.
+  var t0=Date.now(), pronto=false, partiu=false;
+  function vai(){
+    if(partiu || !valid) return;
+    partiu=true;
+    location.replace(target);
+  }
+  function tentar(){ if(pronto && Date.now()-t0>=900) vai(); }
+  window.dataLayer=window.dataLayer||[];
+  window.dataLayer.push({
+    event:'whatsapp_click',
+    destino:'AL Revestimentos Exclusivos',
+    // o GTM chama passando o próprio ID; a tag direta do Google Ads também pode chamar, e essa não vale
+    eventCallback:function(id){
+      if(id && String(id).indexOf('GTM-')!==0) return;
+      pronto=true; tentar(); setTimeout(tentar, 900-(Date.now()-t0));
+    },
+    eventTimeout:2000
+  });
+
   if(valid){
     go.href=target;
-    setTimeout(function(){ location.href=target; },1800);
+    setTimeout(vai,2600);
     setTimeout(function(){ spin.style.display='none'; manual.style.display='block'; },3200);
   } else {
     // rede de segurança: se o link vier sem número ou malformado
